@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Generation System - Transform Specs to Apps</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <span class="logo">🚀</span>
+                <h1>CodeGen</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#generator" class="nav-link">Generator</a></li>
+                <li><a href="#docs" class="nav-link">Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Transform Ideas into Applications</h1>
+                <p class="hero-subtitle">Generate complete full-stack web applications from natural language specifications</p>
+                <div class="hero-buttons">
+                    <a href="#generator" class="btn btn-primary btn-large">Get Started</a>
+                    <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <span>specification.md</span>
+                    </div>
+                    <pre><code># My App
+User authentication
+Create & manage items
+Generate reports</code></pre>
+                </div>
+                <div class="arrow">→</div>
+                <div class="code-window">
+                    <div class="window-header">
+                        <span>Full Application</span>
+                    </div>
+                    <pre><code>✓ Frontend (React)
+✓ Backend (Express)
+✓ Database (PostgreSQL)
+✓ Docker & K8s</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3>Smart Analysis</h3>
+                    <p>Parses natural language to extract requirements, entities, and API endpoints automatically</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Architecture Design</h3>
+                    <p>Intelligent design of scalable, production-ready application architecture</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Complete Stack</h3>
+                    <p>Frontend, Backend, Database, and Deployment - everything generated for you</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Built-in Security</h3>
+                    <p>Authentication, encryption, validation, and security best practices included</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐳</div>
+                    <h3>Containerized</h3>
+                    <p>Docker and Kubernetes configurations for seamless deployment</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Production Ready</h3>
+                    <p>Generated code follows best practices and is immediately deployable</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Write Specification</h3>
+                    <p>Describe your application in plain English</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Analyze</h3>
+                    <p>System extracts requirements and entities</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Design</h3>
+                    <p>Architecture is planned and optimized</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Generate</h3>
+                    <p>Complete application is generated</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generator Section -->
+    <section id="generator" class="generator">
+        <div class="container">
+            <h2 class="section-title">Generate Your Application</h2>
+            <div class="generator-wrapper">
+                <div class="generator-panel">
+                    <div class="panel-header">
+                        <h3>Specification</h3>
+                        <div class="panel-tabs">
+                            <button class="tab-btn active" data-tab="editor">Editor</button>
+                            <button class="tab-btn" data-tab="template">Template</button>
+                            <button class="tab-btn" data-tab="examples">Examples</button>
+                        </div>
+                    </div>
+
+                    <!-- Editor Tab -->
+                    <div class="tab-content active" id="editor-tab">
+                        <form id="generatorForm" class="generator-form">
+                            <div class="form-group">
+                                <label for="appName">Project Name</label>
+                                <input type="text" id="appName" name="appName" placeholder="e.g., My Task Manager" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="specification">Application Specification</label>
+                                <textarea id="specification" name="specification" 
+                                    placeholder="# My Application&#10;&#10;## Overview&#10;Describe your app...&#10;&#10;## Requirements&#10;- Feature 1&#10;- Feature 2&#10;&#10;## Data Models&#10;Model User {&#10;  id: uuid&#10;  email: email&#10;  name: string&#10;}" 
+                                    rows="12" required></textarea>
+                                <small>Describe your application requirements in natural language</small>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="framework">Frontend Framework</label>
+                                    <select id="framework" name="framework">
+                                        <option value="react" selected>React + TypeScript</option>
+                                        <option value="vue">Vue 3</option>
+                                        <option value="angular">Angular</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="backend">Backend Framework</label>
+                                    <select id="backend" name="backend">
+                                        <option value="express" selected>Express.js</option>
+                                        <option value="nestjs">NestJS</option>
+                                        <option value="fastapi">FastAPI</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="database">Database</label>
+                                    <select id="database" name="database">
+                                        <option value="postgresql" selected>PostgreSQL</option>
+                                        <option value="mongodb">MongoDB</option>
+                                        <option value="mysql">MySQL</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="deployment">Deployment</label>
+                                    <select id="deployment" name="deployment">
+                                        <option value="docker" selected>Docker</option>
+                                        <option value="kubernetes">Kubernetes</option>
+                                        <option value="serverless">Serverless</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="includeTests" checked>
+                                    Include Tests
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="includeDocs" checked>
+                                    Include Documentation
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="includeCI" checked>
+                                    Include CI/CD Pipeline
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large" id="generateBtn">
+                                <span class="btn-text">Generate Application</span>
+                                <span class="btn-spinner" style="display: none;">Generating...</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Template Tab -->
+                    <div class="tab-content" id="template-tab">
+                        <div class="template-content">
+                            <h4>Specification Template</h4>
+                            <pre><code># My Application
+
+## Overview
+Brief description of what your app does.
+
+## Functional Requirements
+- User authentication with JWT
+- Create and manage items
+- View analytics dashboard
+- Export reports
+
+## Data Models
+Model User {
+  id: uuid
+  email: email
+  password: string
+  name: string
+  created_at: date
+}
+
+Model Item {
+  id: uuid
+  title: string
+  description: string
+  user_id: uuid
+  status: enum[todo, in-progress, done]
+}
+
+## API Endpoints
+POST /api/auth/login
+GET /api/items
+POST /api/items
+PUT /api/items/:id
+DELETE /api/items/:id
+
+## Authentication
+JWT token-based authentication
+
+## Database
+PostgreSQL with Redis caching
+
+## Deployment
+Docker containers with Kubernetes support</code></pre>
+                            <button class="btn btn-secondary" id="loadTemplate">Use This Template</button>
+                        </div>
+                    </div>
+
+                    <!-- Examples Tab -->
+                    <div class="tab-content" id="examples-tab">
+                        <div class="examples-list">
+                            <div class="example-item">
+                                <h4>📋 Task Management App</h4>
+                                <p>Team collaboration with task tracking, comments, and notifications</p>
+                                <button class="btn btn-secondary btn-small" data-example="task">Load Example</button>
+                            </div>
+                            <div class="example-item">
+                                <h4>🛒 E-Commerce Platform</h4>
+                                <p>Full-featured shop with products, cart, orders, and payments</p>
+                                <button class="btn btn-secondary btn-small" data-example="ecommerce">Load Example</button>
+                            </div>
+                            <div class="example-item">
+                                <h4>📊 Analytics Dashboard</h4>
+                                <p>Real-time data visualization with reports and exports</p>
+                                <button class="btn btn-secondary btn-small" data-example="analytics">Load Example</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Output Preview -->
+                <div class="output-panel">
+                    <div class="panel-header">
+                        <h3>Generated Structure</h3>
+                    </div>
+                    <div class="output-content" id="outputContent">
+                        <div class="placeholder">
+                            <p>✨ Your generated application structure will appear here</p>
+                            <small>Fill in the specification and click Generate</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="stack-grid">
+                <div class="stack-item">
+                    <h4>Frontend</h4>
+                    <ul>
+                        <li>React 18</li>
+                        <li>TypeScript</li>
+                        <li>Redux</li>
+                        <li>Tailwind CSS</li>
+                        <li>React Router</li>
+                    </ul>
+                </div>
+                <div class="stack-item">
+                    <h4>Backend</h4>
+                    <ul>
+                        <li>Express.js</li>
+                        <li>TypeScript</li>
+                        <li>PostgreSQL</li>
+                        <li>Redis</li>
+                        <li>JWT Auth</li>
+                    </ul>
+                </div>
+                <div class="stack-item">
+                    <h4>Infrastructure</h4>
+                    <ul>
+                        <li>Docker</li>
+                        <li>Docker Compose</li>
+                        <li>Kubernetes</li>
+                        <li>GitHub Actions</li>
+                        <li>Nginx</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs Section -->
+    <section id="docs" class="docs">
+        <div class="container">
+            <h2 class="section-title">Documentation</h2>
+            <div class="docs-grid">
+                <a href="#" class="doc-card">
+                    <h4>📖 Getting Started</h4>
+                    <p>Quick start guide to generate your first application</p>
+                </a>
+                <a href="#" class="doc-card">
+                    <h4>🏗️ Architecture</h4>
+                    <p>Deep dive into system design and components</p>
+                </a>
+                <a href="#" class="doc-card">
+                    <h4>🚀 Deployment</h4>
+                    <p>Deploy your generated app to production</p>
+                </a>
+                <a href="#" class="doc-card">
+                    <h4>🔧 Customization</h4>
+                    <p>Extend and customize generated code</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CodeGen</h4>
+                    <p>Transform ideas into production-ready applications</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#generator">Generator</a></li>
+                        <li><a href="#docs">Docs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Examples</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Code Generation System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Result Modal -->
+    <div id="resultModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Application Generated Successfully! 🎉</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="resultDetails"></div>
+                <div class="result-files">
+                    <h4>Generated Files & Directories:</h4>
+                    <div id="fileTree" class="file-tree"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeModal">Close</button>
+                <button class="btn btn-primary" id="downloadBtn">Download Project</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

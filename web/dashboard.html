@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeGen Quick Start</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+        }
+
+        .card {
+            padding: 40px 30px;
+            border-right: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .card:last-child {
+            border-right: none;
+        }
+
+        .card:hover {
+            background: #f9fafb;
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #1f2937;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        .input-section {
+            padding: 40px;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .input-group button {
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .input-group button:hover {
+            background: #5568d3;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quick-link {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+            text-decoration: none;
+            color: #667eea;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            background: white;
+        }
+
+        .quick-link:hover {
+            background: #e0e7ff;
+            border-color: #667eea;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .stat {
+            padding: 30px;
+            text-align: center;
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .quick-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat {
+                border-right: none;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h3 {
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            border: 1px solid #6ee7b7;
+            color: #065f46;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🚀 Code Generation System</h1>
+            <p>Transform specifications into production-ready applications</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="card">
+                <div class="icon">📝</div>
+                <h3>Write Spec</h3>
+                <p>Describe your application requirements in natural language</p>
+                <button class="btn" onclick="scrollToInput()">Get Started</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏗️</div>
+                <h3>Design</h3>
+                <p>System automatically designs optimal architecture</p>
+                <button class="btn" onclick="showInfo('design')">Learn More</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">⚡</div>
+                <h3>Generate</h3>
+                <p>Complete full-stack application is generated instantly</p>
+                <button class="btn" onclick="showInfo('generate')">How It Works</button>
+            </div>
+        </div>
+
+        <!-- Generator Input -->
+        <div class="input-section">
+            <h3 style="color: #1f2937; margin-bottom: 20px;">Project Name & Quick Options</h3>
+            <div class="input-group">
+                <input type="text" id="projectName" placeholder="Enter project name (e.g., My Task Manager)">
+                <button onclick="generateProject()">Generate Project</button>
+            </div>
+
+            <p style="color: #6b7280; font-size: 13px; margin-bottom: 15px;">Or load a template:</p>
+            <div class="quick-links">
+                <button class="quick-link" onclick="loadExample('task')">Task Manager</button>
+                <button class="quick-link" onclick="loadExample('ecommerce')">E-Commerce</button>
+                <button class="quick-link" onclick="loadExample('analytics')">Analytics</button>
+                <button class="quick-link" onclick="showInfo('specs')">View Specs</button>
+            </div>
+
+            <div class="success-message" id="successMsg">
+                ✓ Project generated successfully! Check your downloads folder.
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Generated Code</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Minutes to Deploy</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Customizable</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">0$</div>
+                <div class="stat-label">Setup Cost</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 id="modalTitle">Information</h3>
+            <div id="modalBody" style="color: #6b7280; line-height: 1.8;"></div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToInput() {
+            document.getElementById('projectName').focus();
+            document.getElementById('projectName').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateProject() {
+            const projectName = document.getElementById('projectName').value;
+            if (!projectName.trim()) {
+                alert('Please enter a project name');
+                return;
+            }
+
+            const msg = document.getElementById('successMsg');
+            msg.style.display = 'block';
+            
+            setTimeout(() => {
+                msg.style.display = 'none';
+                alert(`\n✅ Generated: ${projectName}\n\nIn production, this would download your complete application with:\n• React frontend\n• Express backend\n• PostgreSQL database\n• Docker containers\n• CI/CD pipeline`);
+            }, 1500);
+        }
+
+        function loadExample(type) {
+            const projects = {
+                task: 'Task Management System',
+                ecommerce: 'E-Commerce Platform',
+                analytics: 'Analytics Dashboard'
+            };
+            
+            document.getElementById('projectName').value = projects[type] || 'My Project';
+            generateProject();
+        }
+
+        function showInfo(type) {
+            const modal = document.getElementById('infoModal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+
+            const info = {
+                design: {
+                    title: 'How We Design',
+                    content: `<p>Our intelligent system analyzes your requirements and:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Identifies entities and relationships</li>
+                    <li>Designs optimal database schema</li>
+                    <li>Plans API architecture</li>
+                    <li>Selects best technologies</li>
+                    <li>Configures deployment strategy</li>
+                    </ul>`
+                },
+                generate: {
+                    title: 'Generation Process',
+                    content: `<p>The generation happens in 4 steps:</p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Parse:</strong> Analyze your specification</li>
+                    <li><strong>Design:</strong> Create architecture</li>
+                    <li><strong>Generate:</strong> Write all code</li>
+                    <li><strong>Package:</strong> Bundle for deployment</li>
+                    </ol>
+                    <p style="margin-top: 15px;">Result: Complete, ready-to-run application!</p>`
+                },
+                specs: {
+                    title: 'Specification Format',
+                    content: `<p>Write your spec in natural language:</p>
+                    <pre style="background: #f3f4f6; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 12px;"># My App
+
+## Overview
+Describe what it does
+
+## Requirements  
+- Feature 1
+- Feature 2
+
+## Models
+Model User {
+  email: email
+  name: string
+}
+
+## API
+GET /api/users
+POST /api/users</pre>`
+                }
+            };
+
+            title.textContent = info[type].title;
+            body.innerHTML = info[type].content;
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').classList.remove('show');
+        }
+
+        document.getElementById('infoModal').addEventListener('click', (e) => {
+            if (e.target.id === 'infoModal') closeModal();
+        });
+
+        // Auto-focus on load
+        window.addEventListener('load', () => {
+            document.getElementById('projectName').placeholder = 'e.g., My Task Manager...';
+        });
+    </script>
+</body>
+</html>
